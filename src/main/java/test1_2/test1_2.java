@@ -29,7 +29,6 @@ public class test1_2 {
 				"create table test2(id varchar(100), password bytea, public bytea, private bytea, primary key(id));",
 				"create table test3(id varchar(100), dir varchar(100), description varchar(100), common bytea, primary key(id,dir));",
 				"create table test4(commenthash varchar(128), primary key(commenthash));",
-				"insert into test4 values('bf6f26c550e0d710fba1b440b5ee7e84de2cf9b3364a4bbff5cb49c5891b9f44198e224c69f78de00c7ad0b658e8bb964c91389671de36945681f52c5b9ed8ad');"
 		};
 		for (int i = 0; i < sqls.length; i++) {
 			PreparedStatement stmt = con2.prepareStatement(sqls[i]);
@@ -72,19 +71,14 @@ public class test1_2 {
 		// migration test4
 		ps = con.prepareStatement("select commenthash from test4");
 		rs = ps.executeQuery();
-		if (rs.next()) {
-			PreparedStatement ps2 = con2.prepareStatement("delete from test4");
-			ps2.execute();
-			ps2.close();
-			ps2 = con2.prepareStatement("insert into test4 values(?)");
-			ps2.setObject(1, rs.getObject(1));
-			ps2.execute();
-			ps2.close();
-			System.out.print("=");
-		}
+		rs.next();
+		PreparedStatement ps2 = con2.prepareStatement("insert into test4 values(?)");
+		ps2.setObject(1, rs.getObject(1));
+		ps2.execute();
+		ps2.close();
 		rs.close();
 		ps.close();
-		System.out.println();
+		System.out.println("=");
 
 		Statement stmt = con.createStatement();
 		rs = stmt.executeQuery("select distinct dir from test");
@@ -104,7 +98,7 @@ public class test1_2 {
 			ps.setString(1, dir);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				PreparedStatement ps2 = con2.prepareStatement("insert into test values(?,?,?,?,?)");
+				ps2 = con2.prepareStatement("insert into test values(?,?,?,?,?)");
 				ps2.setObject(1, rs.getObject(1));
 				ps2.setObject(2, rs.getObject(2));
 				ps2.setBinaryStream(3, rs.getBinaryStream(3));
