@@ -90,7 +90,7 @@ public class test1_2 {
 				PreparedStatement ps2 = con2.prepareStatement("insert into test values(?,?,?,?,?)");
 				ps2.setObject(1, rs.getObject(1));
 				ps2.setObject(2, rs.getObject(2));
-				ps2.setObject(3, rs.getObject(3));
+				ps2.setBytes(3, rs.getBytes(3));
 				ps2.setObject(4, rs.getObject(4));
 				ps2.setObject(5, rs.getObject(5));
 				ps2.execute();
