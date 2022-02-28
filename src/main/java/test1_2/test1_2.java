@@ -69,6 +69,23 @@ public class test1_2 {
 		ps.close();
 		System.out.println("-");
 
+		// migration test4
+		ps = con.prepareStatement("select commenthash from test4");
+		rs = ps.executeQuery();
+		if (rs.next()) {
+			PreparedStatement ps2 = con2.prepareStatement("delete from test4");
+			ps2.execute();
+			ps2.close();
+			ps2 = con2.prepareStatement("insert into test4 values(?)");
+			ps2.setObject(1, rs.getObject(1));
+			ps2.execute();
+			ps2.close();
+			System.out.print("=");
+		}
+		rs.close();
+		ps.close();
+		System.out.println();
+
 		Statement stmt = con.createStatement();
 		rs = stmt.executeQuery("select distinct dir from test");
 
