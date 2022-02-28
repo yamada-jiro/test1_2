@@ -44,7 +44,7 @@ public class test1_2 {
 			PreparedStatement ps2 = con2.prepareStatement("insert into test2 values(?,?,?,?)");
 			ps2.setObject(1, rs.getObject(1));
 			ps2.setObject(2, rs.getObject(2));
-			ps2.setObject(3, rs.getObject(3));
+			ps2.setBinaryStream(3, rs.getBinaryStream(3));
 			ps2.setObject(4, rs.getObject(4));
 			ps2.execute();
 			ps2.close();
