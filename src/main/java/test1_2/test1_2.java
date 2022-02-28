@@ -25,7 +25,7 @@ public class test1_2 {
 
 		// initial sql for h2
 		final String[] sqls = {
-				"create table test(dir varchar(100), name varchar(100), data bytea, width int, type int, primary key(dir,name,width));",
+				"create table test(dir varchar(100), name varchar(100), data BINARY LARGE OBJECT, width int, type int, primary key(dir,name,width));",
 				"create table test2(id varchar(100), password bytea, public bytea, private bytea, primary key(id));",
 				"create table test3(id varchar(100), dir varchar(100), description varchar(100), common bytea, primary key(id,dir));",
 				"create table test4(commenthash varchar(128), primary key(commenthash));",
@@ -90,7 +90,7 @@ public class test1_2 {
 				PreparedStatement ps2 = con2.prepareStatement("insert into test values(?,?,?,?,?)");
 				ps2.setObject(1, rs.getObject(1));
 				ps2.setObject(2, rs.getObject(2));
-				ps2.setBinaryStream(3, rs.getBinaryStream(3));
+				ps2.setObject(3, rs.getObject(3));
 				ps2.setObject(4, rs.getObject(4));
 				ps2.setObject(5, rs.getObject(5));
 				ps2.execute();
