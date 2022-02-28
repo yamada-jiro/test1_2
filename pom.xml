@@ -7,15 +7,15 @@
 	<version>1.0-SNAPSHOT</version>
 	<properties>
 		<maven.compiler.source>8</maven.compiler.source>
-        	<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.3.3</version>
-</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.3</version>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -23,4 +23,16 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>test1_2.test1_2</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
